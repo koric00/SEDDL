@@ -1,0 +1,161 @@
+/**calendar.wxss**/
+.container {
+  padding: 20rpx;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.prev-month, .next-month {
+  padding: 10rpx 20rpx;
+  background-color: #f0f0f0;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+}
+
+.current-month {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.weekday-header {
+  display: flex;
+  margin-bottom: 10rpx;
+}
+
+.weekday {
+  flex: 1;
+  text-align: center;
+  font-size: 28rpx;
+  color: #666;
+  padding: 10rpx 0;
+}
+
+.calendar-body {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1rpx solid #eee;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.calendar-day {
+  width: 14.28%;
+  height: 100rpx;
+  border: 1rpx solid #eee;
+  box-sizing: border-box;
+  position: relative;
+  padding: 10rpx;
+}
+
+.day-number {
+  font-size: 28rpx;
+}
+
+.other-month {
+  color: #ccc;
+  background-color: #f9f9f9;
+}
+
+.today {
+  background-color: #e6f7ff;
+}
+
+.selected {
+  background-color: #d4edda;
+}
+
+.deadline-indicator {
+  position: absolute;
+  bottom: 10rpx;
+  right: 10rpx;
+  display: flex;
+  align-items: center;
+}
+
+.dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background-color: #1aad19;
+}
+
+.count {
+  font-size: 20rpx;
+  color: #1aad19;
+  margin-left: 4rpx;
+}
+
+.deadline-details {
+  margin-top: 30rpx;
+  border: 1rpx solid #eee;
+  border-radius: 10rpx;
+  padding: 20rpx;
+}
+
+.details-header {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.detail-item {
+  padding: 15rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-name {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.detail-type {
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 5rpx;
+}
+
+.detail-tier {
+  display: inline-block;
+  padding: 4rpx 12rpx;
+  border-radius: 6rpx;
+  font-size: 20rpx;
+  margin-top: 5rpx;
+}
+
+.tier-A {
+  background-color: #e64340;
+  color: white;
+}
+
+.tier-B {
+  background-color: #1aad19;
+  color: white;
+}
+
+.tier-C {
+  background-color: #576b95;
+  color: white;
+}
+
+.no-deadlines {
+  text-align: center;
+  color: #888;
+  padding: 20rpx 0;
+}
+
+/* 页面标题样式 */
+.page-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  text-align: center;
+  margin: 20rpx 0;
+}

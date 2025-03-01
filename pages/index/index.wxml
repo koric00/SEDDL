@@ -1,0 +1,60 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="header">
+    <view class="title">软件工程会议截止日期</view>
+    <view class="subtitle">最后更新: {{lastUpdated || '未更新'}}</view>
+  </view>
+  
+  <!-- 分类选择器 -->
+  <view class="tier-selector">
+    <view 
+      wx:for="{{tiers}}" 
+      wx:key="value" 
+      class="tier-button {{selectedTier === item.value ? 'selected' : ''}}"
+      bindtap="changeTier"
+      data-tier="{{item.value}}">
+      {{item.text}}
+    </view>
+  </view>
+  
+  <!-- 加载中提示 -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+  
+  <!-- 错误提示 -->
+  <view class="error" wx:elif="{{error}}">
+    <text>{{error}}</text>
+    <button bindtap="loadData" class="retry-button">重试</button>
+  </view>
+  
+  <!-- 会议列表 -->
+  <view class="deadlines-list" wx:else>
+    <block wx:if="{{filteredDeadlines.length > 0}}">
+      <view class="meeting-item" wx:for="{{filteredDeadlines}}" wx:key="id">
+        <view class="meeting-info">
+          <view class="meeting-header">
+            <view class="meeting-name">{{item.name}}</view>
+            <view class="meeting-tier tier-{{item.tier}}">{{item.tier}}类</view>
+          </view>
+          <view class="meeting-type">{{item.type}}</view>
+          <view class="meeting-deadline">{{item.deadline}}</view>
+          <view class="meeting-location" wx:if="{{item.location}}">
+            <text class="location-icon">📍</text>
+            <text>{{item.location}}</text>
+          </view>
+        </view>
+        <view class="meeting-actions">
+          <view class="deadline-days {{item.daysLeft <= 7 ? 'urgent' : ''}}">
+            还剩 {{item.daysLeft}} 天
+          </view>
+          <view class="add-calendar-icon" bindtap="addToCalendar" data-item="{{item}}">➕</view>
+        </view>
+      </view>
+    </block>
+    <view class="no-data" wx:else>
+      <text>没有找到符合条件的会议</text>
+    </view>
+  </view>
+</view>

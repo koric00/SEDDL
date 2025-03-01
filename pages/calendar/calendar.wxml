@@ -1,0 +1,58 @@
+<!--pages/calendar/calendar.wxml-->
+<view class="container">
+  <!-- 日历标题 -->
+  <view class="calendar-header">
+    <view class="prev-month" bindtap="prevMonth">上个月</view>
+    <view class="current-month">{{year}}年{{month}}月</view>
+    <view class="next-month" bindtap="nextMonth">下个月</view>
+  </view>
+  
+  <!-- 可以在这里添加一个总标题 -->
+  <view class="page-title">软件工程会议截止日期</view>
+  
+  <!-- 星期标题 -->
+  <view class="weekday-header">
+    <view class="weekday">日</view>
+    <view class="weekday">一</view>
+    <view class="weekday">二</view>
+    <view class="weekday">三</view>
+    <view class="weekday">四</view>
+    <view class="weekday">五</view>
+    <view class="weekday">六</view>
+  </view>
+  
+  <!-- 日历主体 -->
+  <view class="calendar-body">
+    <view 
+      class="calendar-day {{item.isCurrentMonth ? '' : 'other-month'}} {{item.isToday ? 'today' : ''}} {{selectedDay === item.day ? 'selected' : ''}}"
+      wx:for="{{days}}" 
+      wx:key="index"
+      bindtap="selectDay"
+      data-index="{{index}}">
+      <view class="day-number">{{item.day}}</view>
+      <view class="deadline-indicator" wx:if="{{item.hasDeadline}}">
+        <view class="dot"></view>
+        <view class="count" wx:if="{{item.deadlineCount > 1}}">{{item.deadlineCount}}</view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 选中日期的截止日期列表 -->
+  <view class="deadline-details" wx:if="{{selectedDay}}">
+    <view class="details-header">{{year}}年{{month}}月{{selectedDay}}日的截止日期</view>
+    <view class="details-list">
+      <block wx:if="{{dayDeadlines.length > 0}}">
+        <view class="detail-item" wx:for="{{dayDeadlines}}" wx:key="index">
+          <view class="detail-info">
+            <view class="detail-name">{{item.name}}</view>
+            <view class="detail-type">{{item.type}}</view>
+            <view class="detail-tier tier-{{item.tier}}">{{item.tier}}</view>
+          </view>
+        </view>
+      </block>
+      <view class="no-deadlines" wx:else>
+        <text>当天没有截止日期</text>
+      </view>
+    </view>
+  </view>
+</view>
